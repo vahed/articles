@@ -13,4 +13,13 @@ class Article extends Model
 
     const UPDATED_AT = NULL;
     const CREATED_AT = null;
+
+    /**
+     * Get the section that owns the article.
+     */
+    public function section()
+    {
+        return $this->belongsTo(Section::class, 'section_id');
+    }
+
 }

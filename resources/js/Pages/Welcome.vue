@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import { useForm } from "@inertiajs/inertia-vue3";
+import DisplayCsvRecords from "../Components/DisplayCsvRecords.vue";
 
 defineProps({
     canLogin: Boolean,
@@ -9,6 +10,7 @@ defineProps({
     phpVersion: String,
     message: String,
     errors: Object,
+    articles: Object
 })
 
 const form = useForm({
@@ -43,6 +45,7 @@ const submit = () => {
         </template>
         
         <div class="py-12">
+            
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
@@ -72,7 +75,7 @@ const submit = () => {
                         <p class="mt-8 text-green-600">{{ this.message }}</p>
                         <p class="mt-8 text-red-600">{{ form.errors.csvFile }}</p>
                     </div>
-                    
+                    <DisplayCsvRecords :articles="articles"/>
                 </div>
             </div>
         </div>
@@ -80,68 +83,3 @@ const submit = () => {
 
 </template>
 
-
-<!-- <script setup>
-// import BreezeAuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/inertia-vue3";
-// import BreezeButton from "@/Components/Button.vue";
-// import { Link } from "@inertiajs/inertia-vue3";
-import { useForm } from "@inertiajs/inertia-vue3";
-
-const form = useForm({
-    name: "",
-    image: "",
-    description: "",
-});
-
-const submit = () => {
-    form.post(route('articles.import'), {
-        forceFormData: true,
-    });
-};
-</script>
-
-<template>
-    <Head title="Import Csv file" />
-
-    <BreezeAuthenticatedLayout>
-        <template>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Post Create
-            </h2>
-        </template>
-
-        <div class="py-12">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <form @submit.prevent="submit">
-                            <div class="mb-4">
-                                <input
-                                    type="file"
-                                    name="image"
-                                    @input="form.image = $event.target.files[0]"
-                                />
-                                <div
-                                    v-if="form.errors.image"
-                                    class="text-sm text-red-600"
-                                >
-                                    {{ form.errors.image }}
-                                </div>
-                            </div>
-
-                            <button
-                                type="submit"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                :disabled="form.processing"
-                                :class="{ 'opacity-25': form.processing }"
-                            >
-                                Submit
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </BreezeAuthenticatedLayout>
-</template> -->

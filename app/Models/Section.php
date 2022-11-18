@@ -14,4 +14,13 @@ class Section extends Model
     const CREATED_AT = NULL;
     const UPDATED_AT = NULL;
 
+    /**
+     * Get the articles for the sections.
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+    
+
 }
